@@ -60,5 +60,7 @@ fn get_zenity_version() -> Option<Ver> {
 
 fn get_version_output(program: &str) -> Option<String> {
     let output = Command::new(program).arg("--version").output().ok()?;
-    Some(output.stdout.as_ascii_str().ok()?.to_string())
+    // let tmp = output.stdout.as_ascii_str().ok();
+    let utf = String::from_utf8(output.stdout).ok()?;
+    Some(utf)
 }
