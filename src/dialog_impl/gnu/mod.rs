@@ -62,5 +62,6 @@ fn get_version_output(program: &str) -> Option<String> {
     let output = Command::new(program).arg("--version").output().ok()?;
     // let tmp = output.stdout.as_ascii_str().ok();
     let utf = String::from_utf8(output.stdout).ok()?;
+    let err = String::from_utf8(output.stderr).ok()?;
     Some(utf)
 }
